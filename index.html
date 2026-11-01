@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============ SEO ============ -->
+  <title>Faraday Etüt Merkezi | Van Çalışma Salonu & Etüt – TYT, AYT, KPSS Hazırlık</title>
+  <meta name="description" content="Faraday Etüt Merkezi – Van İpekyolu'da kilitli dolaplı kişisel masa, haftalık YKS ve KPSS deneme sınavları, sessiz disiplinli çalışma salonu ve kitap kafe. Cumhuriyet Caddesi, Değer İş Merkezi Kat 6. Tel: 0541 140 65 45" />
+  <meta name="keywords" content="Van etüt merkezi, Van çalışma salonu, KPSS YKS hazırlık Van, Van dershane, Faraday Etüt Merkezi, Van kitap kafe, TYT hazırlık Van, AGS DGS ALES Van, Van deneme sınavı" />
+  <meta name="robots" content="index, follow" />
+  <meta name="geo.region" content="TR-65" />
+  <meta name="geo.placename" content="Van" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Faraday Etüt Merkezi — Van'ın En Disiplinli Yeni Nesil Çalışma Salonu" />
+  <meta property="og:description" content="Kilitli dolaplı kişisel masa, her hafta YKS & KPSS deneme sınavları, sessiz disiplinli ortam ve kitap kafe. Cumhuriyet Caddesi, Değer İş Merkezi Kat 6 / Van." />
+  <!-- NOT: Yayına alınca og:image'ı tam adresle değiştirin: https://domain.com/images/salon2.webp -->
+  <meta property="og:image" content="images/salon2.webp" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" type="image/jpeg" href="images/logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  { DEFAULT: '#0F2A5C', deep: '#0A1F45' },
+            gold:  { DEFAULT: '#C29B3C', resolve: '#C29B3C', pale: '#8A6E24' },
+            paper: '#F5F2EA',
+            line:  { DEFAULT: '#DDD6C3', dark: '#C8BFA6' }
+          },
+          fontFamily: {
+            display: ['Fraunces', 'Georgia', 'serif'],
+            body: ['Inter', 'ui-sans-serif', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: #F5F2EA; color: #14213B; }
+    ::selection { background: #C29B3C; color: #0A1F45; }
+
+    .kicker { font-size: 11px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; }
+    .serif  { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+
+    /* Scroll reveal — hafif */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .65s cubic-bezier(.2,.6,.2,1), transform .65s cubic-bezier(.2,.6,.2,1); }
+    .reveal.revealed { opacity: 1; transform: none; }
+
+    /* İlerleme çizgisi (sayfa üstü, altın) */
+    #progressBar { position: fixed; top: 0; left: 0; height: 2px; width: 0; z-index: 60;
+      background: linear-gradient(90deg, #8A6E24, #C29B3C, #E3C163); }
+
+    /* Bölüm başlıklarında clip-mask açılışı */
+    .heading-clip { clip-path: inset(0 0 108% 0); opacity: 0; transform: translateY(10px);
+      transition: clip-path .85s cubic-bezier(.2,.6,.2,1), opacity .85s ease, transform .85s cubic-bezier(.2,.6,.2,1); }
+    .heading-clip.revealed { clip-path: inset(0 0 -10% 0); opacity: 1; transform: none; }
+
+    /* Görseller: alttan maskeli açılış + zoom-out */
+    .img-reveal { clip-path: inset(0 0 100% 0); transition: clip-path 1s cubic-bezier(.2,.6,.2,1); }
+    .img-reveal img { transform: scale(1.07); transition: transform 1.3s cubic-bezier(.2,.6,.2,1); }
+    .img-reveal.revealed { clip-path: inset(0 0 0% 0); }
+    .img-reveal.revealed img { transform: scale(1); }
+
+    /* Gold çizgilerin soldan çizilmesi */
+    .rule-draw { transform: scaleX(0); transform-origin: left center; transition: transform .8s cubic-bezier(.2,.6,.2,1) .2s; }
+    .revealed .rule-draw, .rule-draw.revealed { transform: scaleX(1); }
+
+    /* Hero parallax tabanı */
+    .hero-parallax { transform: scale(1.12); transform-origin: center top; will-change: transform; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .heading-clip, .img-reveal, .rule-draw { transition: none !important; clip-path: none !important; opacity: 1 !important; transform: none !important; }
+      .img-reveal img, .hero-parallax { transform: none !important; }
+      .ticker-track { animation: none; }
+    }
+
+    /* Kayan rozet şeridi */
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker-track { animation: ticker 38s linear infinite; }
+
+    /* Sınav indeksi satırları */
+    .row-link { transition: padding .25s ease; }
+    .row-link:hover { padding-left: .75rem; }
+    .row-link .arrow { opacity: 0; transition: opacity .2s ease, transform .2s ease; transform: translateX(-4px); }
+    .row-link:hover .arrow { opacity: 1; transform: none; }
+
+    details.faq summary::-webkit-details-marker { display: none; }
+    details.faq[open] .chev { transform: rotate(45deg); }
+
+    .map-frame iframe { filter: grayscale(1) contrast(1.04); }
+
+    /* Afiş şeridi: sorunsuz kaydırma */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="font-body antialiased">
+<div id="progressBar" aria-hidden="true"></div>
+
+<!-- ================= ÜST ŞERİT ================= -->
+<div class="bg-navy-deep text-paper/80 text-center text-[11px] tracking-[0.18em] uppercase py-2 px-4">
+  Kayıtlar açık — bize yazın: <a href="tel:+905411406545" class="underline decoration-gold/60 underline-offset-2 hover:text-gold">0541 140 65 45</a>
+</div>
+
+<!-- ================= NAV ================= -->
+<header class="sticky top-0 z-50 bg-paper/90 backdrop-blur border-b border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 h-[68px] flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-3 shrink-0">
+      <img src="images/logo.jpg" alt="Faraday Etüt Merkezi amblemi" class="w-10 h-10 rounded-full" width="40" height="40" />
+      <span class="leading-none">
+        <span class="block serif font-semibold text-navy text-[17px]">Faraday</span>
+        <span class="block kicker text-gold-pale mt-[3px]">Etüt Merkezi · Van</span>
+      </span>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-8 kicker text-navy/70">
+      <a href="#neden" class="hover:text-navy transition-colors">Merkez</a>
+      <a href="#sinavlar" class="hover:text-navy transition-colors">Sınavlar</a>
+      <a href="#deneme" class="hover:text-navy transition-colors">Denemeler</a>
+      <a href="#kampanya" class="hover:text-navy transition-colors">Kampanya</a>
+      <a href="#galeri" class="hover:text-navy transition-colors">Salon</a>
+      <a href="#sss" class="hover:text-navy transition-colors">S.S.S.</a>
+      <a href="#iletisim" class="hover:text-navy transition-colors">İletişim</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20Faraday%20Et%C3%BCt%20Merkezi%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener"
+         class="hidden sm:inline-flex items-center gap-2 bg-navy text-paper text-[13px] font-medium px-5 py-2.5 hover:bg-navy-deep transition-colors">
+        Kayıt &amp; Bilgi Al
+      </a>
+      <button id="menuBtn" class="lg:hidden text-navy p-2 -mr-2" aria-label="Menü">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden lg:hidden border-t border-line bg-paper px-5 py-5">
+    <nav class="grid grid-cols-2 gap-y-3 gap-x-4 text-[15px] text-navy/80">
+      <a href="#neden" class="py-1">Merkez</a>
+      <a href="#sinavlar" class="py-1">Sınavlar</a>
+      <a href="#deneme" class="py-1">Denemeler</a>
+      <a href="#galeri" class="py-1">Salon</a>
+
+      <a href="#kazananlar" class="py-1">Kazananlar</a>
+      <a href="#yorumlar" class="py-1">Yorumlar</a>
+      <a href="#kampanya" class="py-1">Kampanya</a>
+      <a href="#sss" class="py-1">S.S.S.</a>
+      <a href="#iletisim" class="py-1">Konum &amp; İletişim</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= 00. HERO ================= -->
+<section id="hero" class="relative bg-navy text-paper overflow-hidden">
+  <div class="absolute inset-0">
+    <!-- NOT: gerçek salon fotoğrafı; daha güncel salon çekimiyle değiştirilebilir -->
+    <img src="images/salon2.webp" alt="Faraday Etüt Merkezi çalışma salonu" class="w-full h-full object-cover hero-parallax" fetchpriority="high" />
+    <div class="absolute inset-0 bg-navy-deep/85"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-5 lg:px-8 pt-20 md:pt-28 pb-0">
+    <div class="max-w-3xl">
+      <div class="flex items-center gap-3 reveal">
+        <img src="images/logo.jpg" alt="Faraday Etüt Merkezi amblemi — kep, defne ve yıldızlar" class="w-11 h-11 rounded-full border border-gold/60" width="44" height="44" fetchpriority="high" />
+        <span class="w-10 h-px bg-gold rule-draw"></span>
+        <p class="kicker text-gold">Faraday Etüt Merkezi — Van</p>
+      </div>
+
+      <h1 class="serif font-medium text-[42px] leading-[1.05] md:text-[72px] md:leading-[1.02] mt-6 heading-clip tracking-[-0.01em]">
+        Van'ın en disiplinli<br />
+        <em class="text-gold font-normal italic">yeni nesil</em> çalışma salonu.
+      </h1>
+
+      <p class="mt-7 max-w-xl text-paper/70 text-[15px] md:text-lg leading-relaxed reveal">
+        Kilitli dolaplı kişisel masanız, her hafta YKS &amp; KPSS denemeleri, sessiz bir salon ve dost bir kahve. Hayalleriniz korumamız altında.
+      </p>
+
+      <div class="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 reveal">
+        <a href="https://wa.me/905411406545?text=Merhaba%2C%20Faraday%20Et%C3%BCt%20Merkezi%27ne%20kay%C4%B1t%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+           target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center gap-2 bg-paper text-navy-deep text-[14px] font-semibold px-7 py-4 hover:bg-white transition-colors">
+          Kayıt / Bilgi Al
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Faraday+Et%C3%BCt+Merkezi+Cumhuriyet+Caddesi+De%C4%9Fer+%C4%B0%C5%9F+Merkezi+Van"
+           target="_blank" rel="noopener"
+           class="inline-flex items-center justify-center gap-2 border border-paper/30 text-paper text-[14px] font-medium px-7 py-4 hover:border-gold hover:text-gold transition-colors">
+          Konumu Gör
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero bilgi çubuğu: editorial footer-bar -->
+    <div class="mt-16 md:mt-24 grid grid-cols-1 sm:grid-cols-3 border-t border-paper/15 reveal">
+      <div class="py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-paper/15">
+        <p class="kicker text-paper/40">Adres</p>
+        <p class="mt-2 text-sm text-paper/85">Cumhuriyet Cd. · Değer İş Merkezi, Kat 6</p>
+      </div>
+      <div class="py-5 sm:py-6 border-b sm:border-b-0 sm:border-r border-paper/15 sm:px-6">
+        <p class="kicker text-paper/40">Telefon</p>
+        <p class="mt-2 text-sm text-paper/85">0541 140 65 45</p>
+      </div>
+      <div class="py-5 sm:py-6 sm:px-6">
+        <p class="kicker text-paper/40">Denemeler</p>
+        <p class="mt-2 text-sm text-paper/85">Cumartesi–Pazar ritmiyle, her hafta</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sınav şeridi (marquee) -->
+  <div class="relative border-t border-paper/15 overflow-hidden">
+    <div class="ticker-track flex whitespace-nowrap py-3" aria-hidden="true">
+      <span class="shrink-0"></span>
+      <!-- içerik x2 (döngü için) -->
+      <span class="shrink-0 kicker text-paper/45 px-6">TYT</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">AYT</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">KPSS</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">ÖABT</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">AGS</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">DGS</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">ALES</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">Kitap Kafe</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">TYT</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">AYT</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">KPSS</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">ÖABT</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">AGS</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">DGS</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">ALES</span><span class="shrink-0 text-gold/50">◆</span>
+      <span class="shrink-0 kicker text-paper/45 px-6">Kitap Kafe</span><span class="shrink-0 text-gold/50">◆</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 01. RAKAMLAR ================= -->
+<!-- NOT: Sayaç değerleri kaynaklardan derlendi; "kazanan öğrenci" = afişteki 5 bölüm toplamı (16+26+57+17+24). -->
+<section id="rakamlar" class="bg-paper">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28">
+    <div class="grid md:grid-cols-[220px_1fr] gap-8 md:gap-14 items-start">
+
+      <div class="reveal">
+        <div class="flex items-center gap-3">
+          <span class="serif text-gold-pale text-sm">01</span>
+          <span class="w-8 h-px bg-line-dark rule-draw"></span>
+          <p class="kicker text-navy/50">Sayılarla</p>
+        </div>
+        <h2 class="serif text-navy text-3xl md:text-4xl leading-tight mt-4 heading-clip">Faraday'ın<br />çalışma düzeni</h2>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4" data-stagger>
+        <!-- Stat: divider'lı, kart yok -->
+        <div class="reveal pb-10 lg:pb-0 pr-6 lg:pr-8 border-b lg:border-b-0 lg:border-r border-line md:border-none md:border-r  border-line">
+          <p class="serif text-navy text-5xl md:text-6xl tabular-nums"><span class="counter" data-count="7">0</span></p>
+          <p class="mt-3 text-sm text-navy/60 leading-relaxed">farklı sınava aynı takvimle hazırlık — TYT, AYT, KPSS, ÖABT, AGS, DGS, ALES</p>
+        </div>
+        <div class="reveal pb-10 lg:pb-0 pl-6 lg:pl-0 lg:px-8 border-b lg:border-b-0 lg:border-r border-line">
+          <p class="serif text-navy text-5xl md:text-6xl tabular-nums"><span class="counter" data-count="75" data-plus="+">0</span></p>
+          <p class="mt-3 text-sm text-navy/60 leading-relaxed">Türkiye geneli AYT-TYT seri deneme — etüt kayıtlarında hediye</p>
+        </div>
+        <div class="reveal pt-10 lg:pt-0 pr-6 lg:pr-8 lg:border-r lg:border-line">
+          <p class="serif text-navy text-5xl md:text-6xl tabular-nums"><span class="counter" data-count="790">0</span></p>
+          <p class="mt-3 text-sm text-navy/60 leading-relaxed">takipçi @faradayetutmerkezi hesabında günlük disiplin akışı</p>
+        </div>
+        <div class="reveal pt-10 lg:pt-0 pl-6 lg:pl-0 lg:px-8">
+          <p class="serif text-navy text-5xl md:text-6xl tabular-nums"><span class="counter" data-count="140" data-plus="+">0</span></p>
+          <p class="mt-3 text-sm text-navy/60 leading-relaxed">kazanan öğrenci — ilk yılda Tıp, Diş, Eczacılık, Hukuk ve Özel Öğretim dâhil</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02. NEDEN FARADAY ================= -->
+<section id="neden" class="bg-paper border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28 grid md:grid-cols-[300px_1fr] gap-10 md:gap-16">
+
+    <!-- Sol: sticky başlık -->
+    <div class="reveal md:sticky md:top-28 self-start">
+      <div class="flex items-center gap-3">
+        <span class="serif text-gold-pale text-sm">02</span>
+        <span class="w-8 h-px bg-line-dark rule-draw"></span>
+        <p class="kicker text-navy/50">Farkımız</p>
+      </div>
+      <h2 class="serif text-navy text-3xl md:text-4xl leading-tight mt-4 heading-clip">Neden Faraday?</h2>
+      <p class="mt-4 text-[15px] text-navy/60 leading-relaxed">
+        Dört madde. Başka iddialar yok, süslü vaatler yok: iyi masa, sessiz salon,
+        ölçülebilir deneme ritmi ve canınız sıkıldığında bir fincan kahve.
+      </p>
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20misafir%20masa%20ve%20salon%20g%C3%B6r%C3%BC%C5%9Fmesi%20i%C3%A7in%20randevu%20almak%20istiyorum."
+         target="_blank" rel="noopener"
+         class="group inline-flex items-center gap-2 mt-6 kicker text-gold-pale hover:text-navy transition-colors">
+        Salonu gez, yerini gör
+        <span class="w-6 h-px bg-current group-hover:w-9 transition-all"></span>
+      </a>
+    </div>
+
+    <!-- Sağ: numbered editorial list -->
+    <div class="border-t border-line" data-stagger>
+      <article class="reveal group grid sm:grid-cols-[1fr_auto] gap-6 py-9 border-b border-line items-start hover:bg-white/50 transition-colors px-2 sm:px-4 -mx-2 sm:-mx-4">
+        <div>
+          <p class="serif text-gold-pale text-sm">01</p>
+          <h3 class="serif text-navy text-2xl md:text-[26px] mt-1">Kilitli dolaplı, size özel masa</h3>
+          <p class="mt-3 text-[15px] text-navy/60 leading-relaxed max-w-xl">Kayıtla birlikte prizli, kilitli dolaplı ve yalnızca size ait bir masa; kitaplarınız her gün aynı masada sizi bekler.</p>
+        </div>
+        <span class="hidden sm:block mt-1 text-gold-pale">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>
+        </span>
+      </article>
+
+      <article class="reveal group grid sm:grid-cols-[1fr_auto] gap-6 py-9 border-b border-line items-start hover:bg-white/50 transition-colors px-2 sm:px-4 -mx-2 sm:-mx-4">
+        <div>
+          <p class="serif text-gold-pale text-sm">02</p>
+          <h3 class="serif text-navy text-2xl md:text-[26px] mt-1">Sessizlik bir kural değil, kültür</h3>
+          <p class="mt-3 text-[15px] text-navy/60 leading-relaxed max-w-xl">Telefonlar sessizde, sohbet koridorda. Salonun tamamı tek bir ritimde çalışır; gerisi zaten kendiliğinden gelir.</p>
+        </div>
+        <span class="hidden sm:block mt-1 text-gold-pale">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3.75v10.5m3-10.5v10.5M12 7.5H6m12 8.25v-8.25c0-.62-.42-1.18-1.03-1.34l-6-1.5A1.5 1.5 0 0 0 9 5.25v10.5m12 0a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15.75m18 0H3"/></svg>
+        </span>
+      </article>
+
+      <article class="reveal group grid sm:grid-cols-[1fr_auto] gap-6 py-9 border-b border-line items-start hover:bg-white/50 transition-colors px-2 sm:px-4 -mx-2 sm:-mx-4">
+        <div>
+          <p class="serif text-gold-pale text-sm">03</p>
+          <h3 class="serif text-navy text-2xl md:text-[26px] mt-1">Her hafta ölçen denemeler</h3>
+          <p class="mt-3 text-[15px] text-navy/60 leading-relaxed max-w-xl">Cumartesi ve pazar günlerinde Türkiye geneli YKS ve KPSS denemeleri; ardından hata ve sonuç analiz kâğıdı. Zayıf konularınız her hafta net tabloya düşer.</p>
+        </div>
+        <span class="hidden sm:block mt-1 text-gold-pale">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        </span>
+      </article>
+
+      <article class="reveal group grid sm:grid-cols-[1fr_auto] gap-6 py-9 border-b border-line items-start hover:bg-white/50 transition-colors px-2 sm:px-4 -mx-2 sm:-mx-4">
+        <div>
+          <p class="serif text-gold-pale text-sm">04</p>
+          <h3 class="serif text-navy text-2xl md:text-[26px] mt-1">Kitap kafe, masaların yanında</h3>
+          <p class="mt-3 text-[15px] text-navy/60 leading-relaxed max-w-xl">Çay, kahve ve kısa bir nefes: kantin köşesi gün boyu açık, kitap kafe masalarınızın hemen yanında.</p>
+        </div>
+        <span class="hidden sm:block mt-1 text-gold-pale">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 21V5.25A2.25 2.25 0 0 1 6.75 3h6A2.25 2.25 0 0 1 15 5.25V21m3-12h.75A2.25 2.25 0 0 1 21 11.25V21M3 21h18M12 8v3m0 3v.01"/></svg>
+        </span>
+      </article>
+
+      <p class="reveal pt-6 text-[13px] text-navy/45 leading-relaxed">
+        Sınırsız Wi-Fi, klima konforu ve prizli masalar salonun standartlarında.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03. SINAVLAR (indeks listesi) ================= -->
+<section id="sinavlar" class="bg-white border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="serif text-gold-pale text-sm">03</span>
+          <span class="w-8 h-px bg-line-dark rule-draw"></span>
+          <p class="kicker text-navy/50">Programlar</p>
+        </div>
+        <h2 class="serif text-navy text-3xl md:text-4xl leading-tight mt-4 heading-clip">Hangi sınava<br />hazırlanıyorsunuz?</h2>
+      </div>
+      <p class="text-[15px] text-navy/55 max-w-sm leading-relaxed">Yedi sınav, tek salon, özelleştirilmiş takvim. Satıra tıklayın, ilgili program için bize yazın.</p>
+    </div>
+
+    <div class="mt-12 border-t border-line" data-stagger>
+      <!-- Satır 1 -->
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20TYT-AYT%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener" class="reveal row-link group grid md:grid-cols-[180px_1fr_auto] gap-2 md:gap-8 items-baseline py-6 border-b border-line cursor-pointer">
+        <p class="serif text-navy text-2xl md:text-[28px]">TYT / AYT</p>
+        <p class="text-[15px] text-navy/60 leading-relaxed">YKS yolculuğunun tam programı: düzenli etüt rutimi, haftada iki deneme, hata analiz kâğıdı ve net takibi.</p>
+        <span class="flex items-center gap-2 kicker text-gold-pale whitespace-nowrap justify-self-start md:justify-self-end">Bilgi al <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20KPSS%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener" class="reveal row-link group grid md:grid-cols-[180px_1fr_auto] gap-2 md:gap-8 items-baseline py-6 border-b border-line cursor-pointer">
+        <p class="serif text-navy text-2xl md:text-[28px]">KPSS</p>
+        <p class="text-[15px] text-navy/60 leading-relaxed">Atamaya hazırlanan adaylar için Genel Kültür–Genel Yetenek odaklı çalışma düzeni ve seri deneme takvimi.</p>
+        <span class="flex items-center gap-2 kicker text-gold-pale whitespace-nowrap justify-self-start md:justify-self-end">Bilgi al <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20%C3%96ABT%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener" class="reveal row-link group grid md:grid-cols-[180px_1fr_auto] gap-2 md:gap-8 items-baseline py-6 border-b border-line cursor-pointer">
+        <p class="serif text-navy text-2xl md:text-[28px]">ÖABT</p>
+        <p class="text-[15px] text-navy/60 leading-relaxed">Alan öğretmenlik sınavlarına özel masa tahsisi, sessiz salon ve alan bazlı deneme takibi.</p>
+        <span class="flex items-center gap-2 kicker text-gold-pale whitespace-nowrap justify-self-start md:justify-self-end">Bilgi al <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20AGS%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener" class="reveal row-link group grid md:grid-cols-[180px_1fr_auto] gap-2 md:gap-8 items-baseline py-6 border-b border-line cursor-pointer">
+        <p class="serif text-navy text-2xl md:text-[28px]">AGS</p>
+        <p class="text-[15px] text-navy/60 leading-relaxed">Adli meslek sınavına odaklı disiplinli takip, süre yönetimi ve çözüm analizi ritmi.</p>
+        <span class="flex items-center gap-2 kicker text-gold-pale whitespace-nowrap justify-self-start md:justify-self-end">Bilgi al <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20DGS%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener" class="reveal row-link group grid md:grid-cols-[180px_1fr_auto] gap-2 md:gap-8 items-baseline py-6 border-b border-line cursor-pointer">
+        <p class="serif text-navy text-2xl md:text-[28px]">DGS</p>
+        <p class="text-[15px] text-navy/60 leading-relaxed">Dikey geçiş hedefi için yoğun mantık–sayısal program ve haftalık deneme ölçümlemesi.</p>
+        <span class="flex items-center gap-2 kicker text-gold-pale whitespace-nowrap justify-self-start md:justify-self-end">Bilgi al <span class="arrow">→</span></span>
+      </a>
+
+      <a href="https://wa.me/905411406545?text=Merhaba%2C%20ALES%20program%C4%B1%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+         target="_blank" rel="noopener" class="reveal row-link group grid md:grid-cols-[180px_1fr_auto] gap-2 md:gap-8 items-baseline py-6 border-b border-line cursor-pointer">
+        <p class="serif text-navy text-2xl md:text-[28px]">ALES</p>
+        <p class="text-[15px] text-navy/60 leading-relaxed">Lisansüstü ve kadro bekleyen adaylar için dengeli sayısal–sözel strateji ve net takibi.</p>
+        <span class="flex items-center gap-2 kicker text-gold-pale whitespace-nowrap justify-self-start md:justify-self-end">Bilgi al <span class="arrow">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 04. DENEME SINAVLARI ================= -->
+<section id="deneme" class="bg-navy text-paper border-t border-navy-deep">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+    <div>
+      <div class="flex items-center gap-3 reveal">
+        <span class="serif text-gold text-sm">04</span>
+        <span class="w-8 h-px bg-paper/30 rule-draw"></span>
+        <p class="kicker text-paper/50">Deneme Sınavları</p>
+      </div>
+      <h2 class="serif text-paper text-3xl md:text-5xl leading-[1.08] mt-5 heading-clip">Sınava değil,<br /><em class="italic text-gold font-normal">başarıya</em> ölçüyoruz.</h2>
+      <p class="mt-6 text-paper/65 text-[15px] leading-relaxed reveal">Faraday'da deneme bir etkinlik değil, bir sistem: her cumartesi–pazar ölçüm, her hatanın analizi, her zayıf konunun kapandığı bir sonraki hafta. YKS ve KPSS öğrencileri için ayrı ayrı takvim.</p>
+
+      <ol class="mt-10 space-y-0 reveal">
+        <li class="grid grid-cols-[48px_1fr] gap-4 py-5 border-t border-paper/15">
+          <span class="serif text-gold text-lg">01</span>
+          <p class="text-[15px] text-paper/80 leading-relaxed"><strong class="text-paper font-semibold">Kaydını ayırt.</strong> Etüt üyesi öğrenciye haftalık deneme otomatik tanımlanır; dışarıdan katılım için sınırlı kontenjan vardır.</p>
+        </li>
+        <li class="grid grid-cols-[48px_1fr] gap-4 py-5 border-t border-paper/15">
+          <span class="serif text-gold text-lg">02</span>
+          <p class="text-[15px] text-paper/80 leading-relaxed"><strong class="text-paper font-semibold">Gerçek koşullar.</strong> Optik form, süre baskısı ve sessiz salon: sınav günü aynen bu ortamda çalışırsınız.</p>
+        </li>
+        <li class="grid grid-cols-[48px_1fr] gap-4 py-5 border-t border-b border-paper/15">
+          <span class="serif text-gold text-lg">03</span>
+          <p class="text-[15px] text-paper/80 leading-relaxed"><strong class="text-paper font-semibold">Analiz kâğıdı.</strong> Hata ve sonuç tablosu ile netleriniz, konu eksikleriniz her hafta masanızda hazır gelir.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="reveal grid gap-4 md:gap-5">
+      <!-- Kampanya afişleri: işletmenin Instagram görselleri (gerçek) -->
+      <div class="img-reveal border border-paper/20 overflow-hidden">
+        <img src="images/afis-haftada2.jpg" alt="Haftada 2 TYT-AYT deneme — gerçek salon fotoğraflı afiş" class="w-full object-cover" loading="lazy" />
+      </div>
+      <div class="grid grid-cols-2 gap-4 md:gap-5" data-stagger>
+        <img src="images/afis-75.jpg" alt="75 nitelikli Türkiye geneli seri deneme afişi" class="reveal w-full border border-paper/20" loading="lazy" />
+        <img src="images/afis-takvim.jpg" alt="2026 YKS seri deneme takvimi — yayın okulları" class="reveal w-full border border-paper/20" loading="lazy" />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 05. KAMPANYA ================= -->
+<section id="kampanya" class="bg-white border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 pt-20 md:pt-28">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 reveal">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="serif text-gold-pale text-sm">05</span>
+          <span class="w-8 h-px bg-line-dark rule-draw"></span>
+          <p class="kicker text-navy/50">Kampanyalar</p>
+        </div>
+        <h2 class="serif text-navy text-3xl md:text-4xl leading-tight mt-4 heading-clip">Yeni dönem<br />fırsatları</h2>
+      </div>
+      <p class="text-[15px] text-navy/55 max-w-sm leading-relaxed">Güncel kampanyalar Instagram'da da paylaşılıyor; kayıt dönemini kaçırmamak için takipte kalın.</p>
+    </div>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 pb-20 md:pb-28">
+    <!-- Yatay kaydırmalı afiş şeridi -->
+    <div class="flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory no-scrollbar pb-4" data-stagger>
+      <figure class="reveal shrink-0 snap-start w-[270px] md:w-[320px]">
+        <img src="images/afis-kampanya.jpg" alt="Büyük Kampanya — etüt kaydına 75 seri deneme hediye" class="w-full border border-line" loading="lazy" />
+        <figcaption class="kicker text-navy/45 mt-3">Büyük Kampanya · deneme hediye</figcaption>
+      </figure>
+      <figure class="reveal shrink-0 snap-start w-[270px] md:w-[320px]">
+        <img src="images/afis-kayit.jpg" alt="Yeni dönem — kayıtlar açıldı" class="w-full border border-line" loading="lazy" />
+        <figcaption class="kicker text-navy/45 mt-3">Kayıtlar açıldı</figcaption>
+      </figure>
+      <figure class="reveal shrink-0 snap-start w-[270px] md:w-[320px]">
+        <img src="images/afis-yks.jpg" alt="YKS'de başarıyı bizimle yakala" class="w-full border border-line" loading="lazy" />
+        <figcaption class="kicker text-navy/45 mt-3">YKS hazırlık · detaylı takip</figcaption>
+      </figure>
+    </div>
+    <p class="text-[12px] text-navy/35">Afişler Instagram hesabımızdan alıntıdır · güncel kampanyalar için <a href="https://www.instagram.com/faradayetutmerkezi/" target="_blank" rel="noopener" class="underline hover:text-navy">@faradayetutmerkezi</a></p>
+  </div>
+</section>
+
+<!-- ================= 06. KAZANANLAR ================= -->
+<!-- GERÇEK VERİ: Instagram afişi (afis-kazananlar.jpg) — "Devlet üniversiteleri puanı esas alınmıştır" -->
+<section id="kazananlar" class="bg-paper border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28">
+    <div class="flex items-center gap-3 reveal">
+      <span class="serif text-gold-pale text-sm">06</span>
+      <span class="w-8 h-px bg-line-dark rule-draw"></span>
+      <p class="kicker text-navy/50">Kazananlar</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 mt-10 items-start">
+      <div>
+        <h2 class="serif text-navy text-3xl md:text-4xl leading-tight heading-clip">İlk yıl, ilk sonuçlar:<br /><em class="italic text-gold-pale font-normal">başarı tesadüf değildir.</em></h2>
+        <p class="mt-5 text-[15px] text-navy/60 leading-relaxed max-w-lg reveal">İlk yılımızda Van'ın en iyisi olarak YKS 2026'yı geride bıraktık. Yeni sezonda siz de başarmak için aramıza katılın, başarı listesinde yerinizi alın.</p>
+
+        <!-- Gerçek yerleşme sayıları (afişten, devlet üniversiteleri puanı) -->
+        <dl class="mt-10 border-t border-line" data-stagger>
+          <div class="reveal py-4 border-b border-line flex items-baseline justify-between gap-6 px-2 -mx-2">
+            <dt class="serif text-navy text-xl">Tıp</dt>
+            <dd class="serif text-navy text-3xl md:text-4xl tabular-nums">16</dd>
+          </div>
+          <div class="reveal py-4 border-b border-line flex items-baseline justify-between gap-6 px-2 -mx-2">
+            <dt class="serif text-navy text-xl">Diş Hekimliği</dt>
+            <dd class="serif text-navy text-3xl md:text-4xl tabular-nums">26</dd>
+          </div>
+          <div class="reveal py-4 border-b border-line flex items-baseline justify-between gap-6 px-2 -mx-2">
+            <dt class="serif text-navy text-xl">Eczacılık</dt>
+            <dd class="serif text-navy text-3xl md:text-4xl tabular-nums">57</dd>
+          </div>
+          <div class="reveal py-4 border-b border-line flex items-baseline justify-between gap-6 px-2 -mx-2">
+            <dt class="serif text-navy text-xl">Hukuk</dt>
+            <dd class="serif text-navy text-3xl md:text-4xl tabular-nums">17</dd>
+          </div>
+          <div class="reveal py-4 border-b border-line flex items-baseline justify-between gap-6 px-2 -mx-2">
+            <dt class="serif text-navy text-xl">Özel Öğretim</dt>
+            <dd class="serif text-navy text-3xl md:text-4xl tabular-nums">24</dd>
+          </div>
+        </dl>
+        <p class="reveal mt-5 text-[13px] text-navy/40">* Devlet üniversiteleri puanı esas alınmıştır. Listenin devamı Instagram'daki <a href="https://www.instagram.com/faradayetutmerkezi/" target="_blank" rel="noopener" class="underline hover:text-navy">✅KAZANANLAR✅ öne çıkanımızda</a>.</p>
+      </div>
+
+      <div class="reveal relative max-w-md lg:ml-auto">
+        <!-- GERÇEK AFDİŞ: Instagram'daki kazananlar puan listesi -->
+        <div class="img-reveal border border-line overflow-hidden">
+          <img src="images/afis-kazananlar.jpg" alt="Faraday kazananları — 16 Tıp, 26 Diş Hekimliği, 57 Eczacılık, 17 Hukuk, 24 Özel Öğretim puanı" class="w-full" loading="lazy" />
+        </div>
+        <p class="kicker text-navy/40 mt-3">Instagram afişi · @faradayetutmerkezi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 07. GALERİ ================= -->
+<section id="galeri" class="bg-white border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28">
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 reveal">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="serif text-gold-pale text-sm">07</span>
+          <span class="w-8 h-px bg-line-dark rule-draw"></span>
+          <p class="kicker text-navy/50">Galeri</p>
+        </div>
+        <h2 class="serif text-navy text-3xl md:text-4xl leading-tight mt-4 heading-clip">Salonu kendi<br />gözünle görün</h2>
+      </div>
+      <a href="https://www.instagram.com/faradayetutmerkezi/" target="_blank" rel="noopener"
+         class="group inline-flex items-center gap-2 kicker text-gold-pale hover:text-navy transition-colors">
+        Instagram'da devamı
+        <span class="w-6 h-px bg-current group-hover:w-9 transition-all"></span>
+      </a>
+    </div>
+
+    <div class="grid md:grid-cols-12 gap-4 md:gap-5 mt-12" data-stagger>
+      <figure class="reveal img-reveal md:col-span-7 relative overflow-hidden group">
+        <!-- GERÇEK FOTOĞRAF: ferah çalışma salonu -->
+        <img src="images/salon2.webp" alt="Faraday çalışma salonu — kişiye özel masalar" class="w-full h-64 md:h-[420px] object-cover" loading="lazy" />
+        <figcaption class="absolute left-0 bottom-0 bg-paper/95 backdrop-blur px-5 py-4">
+          <p class="kicker text-navy/50">Çalışma salonu</p>
+          <p class="serif text-navy text-lg mt-1">Ferah salon, prizli kişisel masalar</p>
+        </figcaption>
+      </figure>
+
+      <div class="md:col-span-5 grid gap-4 md:gap-5">
+        <figure class="reveal img-reveal relative overflow-hidden group">
+          <!-- GERÇEK FOTOĞRAF: marka duvarı -->
+          <img src="images/salon3.webp" alt="Faraday marka duvarı" class="w-full h-64 md:h-[200px] object-cover" loading="lazy" />
+          <figcaption class="absolute left-0 bottom-0 bg-paper/95 backdrop-blur px-4 py-3">
+            <p class="kicker text-navy/50">Giriş katı</p>
+          </figcaption>
+        </figure>
+
+        <figure class="reveal img-reveal relative overflow-hidden group">
+          <!-- GERÇEK FOTOĞRAF: dolu salon, deneme hazırlığındaki öğrenciler (afiş içinden orijinal kare) -->
+          <img src="images/afis-haftada2.jpg" alt="Deneme hazırlığındaki öğrenciler — Faraday salonu" class="w-full h-64 md:h-[200px] object-cover object-center" loading="lazy" />
+          <figcaption class="absolute left-0 bottom-0 bg-paper/95 backdrop-blur px-4 py-3">
+            <p class="kicker text-navy/50">Deneme günü</p>
+          </figcaption>
+        </figure>
+      </div>
+
+      <!-- Açılış günü panoramik kare (haber kaynağından, künyesiz) -->
+      <figure class="reveal img-reveal md:col-span-12 relative overflow-hidden group">
+        <img src="images/salon-top.jpg" alt="Faraday salonunun geniş görünümü — açılış günü" class="w-full h-40 md:h-56 object-cover" loading="lazy" />
+        <figcaption class="absolute left-0 bottom-0 bg-paper/95 backdrop-blur px-5 py-4">
+          <p class="kicker text-navy/50">Açılış günü</p>
+          <p class="serif text-navy text-lg mt-1">Tek büyük salon, tek bir ritim</p>
+        </figcaption>
+      </figure>
+
+      <figure class="reveal img-reveal relative overflow-hidden group md:col-span-4">
+        <!-- GERÇEK FOTOĞRAF: merkez içinden bir kare — Instagram reels'ten (kitap kafe/mola köşesi) -->
+        <img src="images/ekip.jpg" alt="Faraday Etüt Merkezi içinde mola köşesi ve ekip" class="w-full h-[220px] object-cover" loading="lazy" />
+        <figcaption class="absolute left-0 bottom-0 bg-paper/95 backdrop-blur px-4 py-3">
+          <p class="kicker text-navy/50">Mola &amp; kitap köşesi</p>
+        </figcaption>
+      </figure>
+
+      <figure class="reveal relative overflow-hidden bg-paper min-h-[180px] md:min-h-0 md:h-[220px] md:col-span-4 flex items-center justify-center border border-dashed border-line-dark">
+        <!-- PLACEHOLDER: kilitli dolap + masa yakın çekimi eklenince <img> ile değiştirin -->
+        <figcaption class="text-center px-8">
+          <p class="kicker text-navy/40">Fotoğraf bekleniyor</p>
+          <p class="serif text-navy text-lg mt-2">Kilitli dolaplı masa</p>
+          <p class="text-[12px] text-navy/40 mt-1">images/dolap.jpg olarak ekleyin</p>
+        </figcaption>
+      </figure>
+
+      <figure class="reveal img-reveal relative overflow-hidden group md:col-span-4">
+        <!-- GERÇEK FOTOĞRAF: Değer İş Merkezi binası (Instagram hikâyesinden kırpım) -->
+        <img src="images/bina.jpg" alt="Faraday'ın bulunduğu Değer İş Merkezi binası" class="w-full h-[220px] object-cover" loading="lazy" />
+        <figcaption class="absolute left-0 bottom-0 bg-paper/95 backdrop-blur px-4 py-3">
+          <p class="kicker text-navy/50">Cumhuriyet Cd. · Değer İş Mrk.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 08. YORUMLAR ================= -->
+<!-- NOT: Google yorumlarına erişilemediği için kartlar ŞABLONDUR; Google Maps profilindeki gerçek yorumlarla değiştirin (isimler baş harfle kısaltılmalı). -->
+<section id="yorumlar" class="bg-paper border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28">
+    <div class="flex items-center gap-3 reveal">
+      <span class="serif text-gold-pale text-sm">08</span>
+      <span class="w-8 h-px bg-line-dark rule-draw"></span>
+      <p class="kicker text-navy/50">Google Yorumları</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-10 md:gap-8 mt-10" data-stagger>
+      <article class="reveal">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-navy text-paper serif flex items-center justify-center text-sm">S</div>
+          <div>
+            <p class="text-sm font-medium text-navy">S*** H.</p>
+            <p class="text-[11px] text-navy/40">Google yorumu</p>
+          </div>
+          <span class="ml-auto text-gold-pale text-[13px] tracking-widest" aria-label="5 yıldız">★★★★★</span>
+        </div>
+        <p class="mt-4 text-[15px] text-navy/70 leading-relaxed">"Salon çok ferah ve gerçekten sessiz. Kilitli dolabım sayesinde kitaplarımı bırakıp rahatlıkla çıkabiliyorum."</p>
+      </article>
+
+      <article class="reveal border-t border-line md:border-t-0 pt-6 md:pt-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-navy text-paper serif flex items-center justify-center text-sm">M</div>
+          <div>
+            <p class="text-sm font-medium text-navy">M**** K.</p>
+            <p class="text-[11px] text-navy/40">Google yorumu</p>
+          </div>
+          <span class="ml-auto text-gold-pale text-[13px] tracking-widest" aria-label="5 yıldız">★★★★★</span>
+        </div>
+        <p class="mt-4 text-[15px] text-navy/70 leading-relaxed">"Her cumartesi-pazar deneme gerçekten nitelikli, net takibi çok iyi yapılıyor. KPSS hazırlığı için Van'da seçkin bir adres."</p>
+      </article>
+
+      <article class="reveal border-t border-line md:border-t-0 pt-6 md:pt-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-navy text-paper serif flex items-center justify-center text-sm">B</div>
+          <div>
+            <p class="text-sm font-medium text-navy">B*** Y.</p>
+            <p class="text-[11px] text-navy/40">Google yorumu</p>
+          </div>
+          <span class="ml-auto text-gold-pale text-[13px] tracking-widest" aria-label="5 yıldız">★★★★★</span>
+        </div>
+        <p class="mt-4 text-[15px] text-navy/70 leading-relaxed">"Kitap kafe köşesi mola için ideal; hocalara da kolayca ulaşıyorsun. Gönül rahatlığıyla öneririm."</p>
+      </article>
+    </div>
+
+    <p class="reveal mt-12 text-[13px] text-navy/40 border-t border-line pt-6">* Yorumlar şablondur; Google Maps profilindeki gerçek yorumlarla güncellenmelidir.</p>
+  </div>
+</section>
+
+<!-- ================= 09. S.S.S. ================= -->
+<section id="sss" class="bg-white border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28 grid md:grid-cols-[300px_1fr] gap-10 md:gap-16">
+    <div class="reveal md:sticky md:top-28 self-start">
+      <div class="flex items-center gap-3">
+        <span class="serif text-gold-pale text-sm">09</span>
+        <span class="w-8 h-px bg-line-dark rule-draw"></span>
+        <p class="kicker text-navy/50">Soru–Cevap</p>
+      </div>
+      <h2 class="serif text-navy text-3xl md:text-4xl leading-tight mt-4 heading-clip">Merak<br />edilenler</h2>
+      <p class="mt-4 text-[15px] text-navy/60 leading-relaxed">Aklınıza takılan başka bir soru varsa doğrudan yazın; hafta içi her saat yanıt veriyoruz.</p>
+      <a href="https://wa.me/905411406545" target="_blank" rel="noopener"
+         class="group inline-flex items-center gap-2 mt-6 kicker text-gold-pale hover:text-navy transition-colors">
+        WhatsApp'tan sor
+        <span class="w-6 h-px bg-current group-hover:w-9 transition-all"></span>
+      </a>
+    </div>
+
+    <div class="border-t border-line">
+      <!-- SORU: Çalışma saatleri ŞABLON — gerçek saatlerle güncelleyin -->
+      <details class="faq reveal group border-b border-line">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer py-6 hover:bg-paper/60 transition-colors px-2 -mx-2">
+          <span class="serif text-navy text-lg md:text-xl pr-6">Etüt merkezi hangi saatlerde açık?</span>
+          <span class="chev shrink-0 w-7 h-7 rounded-full border border-line-dark flex items-center justify-center text-gold-pale transition-transform duration-200 text-lg leading-none">+</span>
+        </summary>
+        <p class="pb-7 text-[15px] text-navy/60 leading-relaxed px-2 -mx-2">Hafta içi ve hafta sonu, sabah erken saatlerden akşam geç saatlere kadar açık bir çalışma salonu konseptimiz var. Güncel ve sezonluk çalışma saatleri için bize WhatsApp'tan ulaşabilirsiniz.</p>
+      </details>
+
+      <details class="faq reveal group border-b border-line">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer py-6 hover:bg-paper/60 transition-colors px-2 -mx-2">
+          <span class="serif text-navy text-lg md:text-xl pr-6">Ücretlendirme nasıl, kampanya var mı?</span>
+          <span class="chev shrink-0 w-7 h-7 rounded-full border border-line-dark flex items-center justify-center text-gold-pale transition-transform duration-200 text-lg leading-none">+</span>
+        </summary>
+        <p class="pb-7 text-[15px] text-navy/60 leading-relaxed px-2 -mx-2">Aylık ve sezonluk paketler ile tercih ettiğiniz hizmete göre fiyat değişir. Yıllık kayıtlarda avantajlı kampanyalar, aylık bütçe dostu paketler ve seri deneme setleri mevcut. Güncel liste için WhatsApp'ta yazın; size en uygun paketi birlikte belirleyelim.</p>
+      </details>
+
+      <details class="faq reveal group border-b border-line">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer py-6 hover:bg-paper/60 transition-colors px-2 -mx-2">
+          <span class="serif text-navy text-lg md:text-xl pr-6">Deneme sınavına nasıl kayıt olunur?</span>
+          <span class="chev shrink-0 w-7 h-7 rounded-full border border-line-dark flex items-center justify-center text-gold-pale transition-transform duration-200 text-lg leading-none">+</span>
+        </summary>
+        <p class="pb-7 text-[15px] text-navy/60 leading-relaxed px-2 -mx-2">Haftalık denemeler Faraday öğrencilerine çalışma rutininin bir parçası olarak sunulur. Etüt üyesi olmayanlar için sınırlı kontenjanla dışarıdan katılım da mümkündür: WhatsApp'tan yerinizi ayırtın, deneme takviminde yerinizi alın; sonuçla birlikte hata–analiz kâğıdınız da paylaşılır.</p>
+      </details>
+
+      <details class="faq reveal group border-b border-line">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer py-6 hover:bg-paper/60 transition-colors px-2 -mx-2">
+          <span class="serif text-navy text-lg md:text-xl pr-6">Masamı nasıl ayırtarım?</span>
+          <span class="chev shrink-0 w-7 h-7 rounded-full border border-line-dark flex items-center justify-center text-gold-pale transition-transform duration-200 text-lg leading-none">+</span>
+        </summary>
+        <p class="pb-7 text-[15px] text-navy/60 leading-relaxed px-2 -mx-2">Kayıt sürecinde size özel kilitli dolaplı sabit masa tahsis edilir. Masa kontenjanı sınırlı olduğundan özellikle sezon başında erken kayıt önerilir; kitaplarınız her gün aynı masada sizi bekler.</p>
+      </details>
+
+      <details class="faq reveal group border-b border-line">
+        <summary class="flex items-center justify-between gap-4 cursor-pointer py-6 hover:bg-paper/60 transition-colors px-2 -mx-2">
+          <span class="serif text-navy text-lg md:text-xl pr-6">Nasıl ulaşırım; ortam veliler için güvenli mi?</span>
+          <span class="chev shrink-0 w-7 h-7 rounded-full border border-line-dark flex items-center justify-center text-gold-pale transition-transform duration-200 text-lg leading-none">+</span>
+        </summary>
+        <p class="pb-7 text-[15px] text-navy/60 leading-relaxed px-2 -mx-2">Merkezimiz Cumhuriyet Caddesi'nde, Anadolu Sahaf Kırtasiye'nin ön sokakndaki Değer İş Merkezi'nin 6. katındadır. Sessiz çalışma kuralları, yalnızca kayıtlı öğrencilere masa tahsisi ve sürekli gözetimle güvenli, disiplinli bir ortam sunuyoruz. Velilerin tüm soruları için WhatsApp hattımız ayrıca açıktır.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 10. KONUM & İLETİŞİM ================= -->
+<section id="iletisim" class="bg-paper border-t border-line">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 py-20 md:py-28">
+    <div class="flex items-center gap-3 reveal">
+      <span class="serif text-gold-pale text-sm">10</span>
+      <span class="w-8 h-px bg-line-dark rule-draw"></span>
+      <p class="kicker text-navy/50">Konum &amp; İletişim</p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 mt-10">
+      <div>
+        <h2 class="serif text-navy text-3xl md:text-4xl leading-tight heading-clip">Cumhuriyet Caddesi'nde,<br />6. katta.</h2>
+
+        <dl class="mt-10 reveal border-t border-line">
+          <div class="grid grid-cols-[110px_1fr] gap-4 py-4 border-b border-line text-[15px]">
+            <dt class="kicker text-navy/40 pt-1">Adres</dt>
+            <dd class="text-navy/80 leading-relaxed">Değer İş Merkezi, Kat 6 — Cumhuriyet Caddesi<br /><span class="text-navy/50 text-[14px]">Anadolu Sahaf Kırtasiyesi'nin ön sokağı · İpekyolu / Van 65100</span></dd>
+          </div>
+          <div class="grid grid-cols-[110px_1fr] gap-4 py-4 border-b border-line text-[15px]">
+            <dt class="kicker text-navy/40 pt-1">Telefon</dt>
+            <dd><a href="tel:+905411406545" class="text-navy/80 hover:text-gold-pale transition-colors">0541 140 65 45</a></dd>
+          </div>
+          <div class="grid grid-cols-[110px_1fr] gap-4 py-4 border-b border-line text-[15px]">
+            <dt class="kicker text-navy/40 pt-1">Instagram</dt>
+            <dd><a href="https://www.instagram.com/faradayetutmerkezi/" target="_blank" rel="noopener" class="text-navy/80 hover:text-gold-pale transition-colors">@faradayetutmerkezi</a></dd>
+          </div>
+          <div class="grid grid-cols-[110px_1fr] gap-4 py-4 border-b border-line text-[15px]">
+            <dt class="kicker text-navy/40 pt-1">Deneme</dt>
+            <dd class="text-navy/80">Cumartesi–Pazar · YKS ve KPSS takvimi WhatsApp'tan</dd>
+          </div>
+        </dl>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 reveal">
+          <a href="https://wa.me/905411406545?text=Merhaba%2C%20Faraday%20Et%C3%BCt%20Merkezi%27ne%20kay%C4%B1t%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+             target="_blank" rel="noopener"
+             class="inline-flex items-center justify-center gap-2 bg-navy text-paper text-[14px] font-semibold px-7 py-4 hover:bg-navy-deep transition-colors">
+            WhatsApp'tan yaz
+          </a>
+          <a href="https://www.google.com/maps/search/?api=1&query=Faraday+Et%C3%BCt+Merkezi+Cumhuriyet+Caddesi+De%C4%9Fer+%C4%B0%C5%9F+Merkezi+Van"
+             target="_blank" rel="noopener"
+             class="inline-flex items-center justify-center gap-2 border border-navy/25 text-navy text-[14px] font-medium px-7 py-4 hover:border-navy transition-colors">
+            Google Maps'te aç
+          </a>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <!-- Gerçek bina fotoğrafı: Instagram hikâyesinden kırpıldı -->
+        <div class="img-reveal border border-line-dark overflow-hidden">
+          <img src="images/bina.jpg" alt="Değer İş Merkezi — Faraday Etüt Merkezi'nin bulunduğu bina" class="w-full h-40 md:h-52 object-cover object-top" loading="lazy" />
+        </div>
+        <div class="map-frame border border-line-dark border-t-0 overflow-hidden">
+          <iframe
+            src="https://maps.google.com/maps?q=Faraday%20Et%C3%BCt%20Merkezi%20Cumhuriyet%20Caddesi%20De%C4%9Fer%20%C4%B0%C5%9F%20Merkezi%20Van&z=16&output=embed"
+            width="100%" height="100%" style="border:0; min-height:300px; display:block;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Faraday Etüt Merkezi harita"></iframe>
+        </div>
+        <p class="mt-3 text-[12px] text-navy/40">Anadolu Sahaf Kırtasiyesi'nin ön sokağındaki Değer İş Merkezi'nin 6. katı — İpekyolu / Van.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="bg-navy-deep text-paper">
+  <div class="max-w-6xl mx-auto px-5 lg:px-8 pt-16 pb-10">
+    <div class="grid md:grid-cols-[1fr_auto_auto] gap-10 md:gap-20">
+      <div>
+        <div class="flex items-center gap-4">
+          <img src="images/logo.jpg" alt="Faraday amblemi" class="w-12 h-12 rounded-full border border-gold/40" width="48" height="48" loading="lazy" />
+          <div>
+            <p class="serif text-2xl">Faraday</p>
+            <p class="kicker text-gold mt-1">Etüt Merkezi · Kitap Kafe</p>
+          </div>
+        </div>
+        <p class="mt-6 text-[14px] text-paper/55 leading-relaxed max-w-sm">Van İpekyolu'da; kişiye özel kilitli dolaplı masa, haftalık YKS &amp; KPSS denemeleri ve kitap kafe ile disiplinli çalışmanın yeni adresi.</p>
+        <p class="serif italic text-gold/90 text-lg mt-5">Hayalleriniz korumamız altında.</p>
+      </div>
+
+      <div>
+        <p class="kicker text-paper/40">Sayfalar</p>
+        <ul class="mt-4 space-y-2.5 text-[14px] text-paper/70">
+          <li><a href="#neden" class="hover:text-gold transition-colors">Farkımız</a></li>
+          <li><a href="#sinavlar" class="hover:text-gold transition-colors">Sınavlar</a></li>
+          <li><a href="#deneme" class="hover:text-gold transition-colors">Denemeler</a></li>
+          <li><a href="#galeri" class="hover:text-gold transition-colors">Galeri</a></li>
+          <li><a href="#sss" class="hover:text-gold transition-colors">S.S.S.</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="kicker text-paper/40">İletişim</p>
+        <ul class="mt-4 space-y-2.5 text-[14px] text-paper/70">
+          <li><a href="tel:+905411406545" class="hover:text-gold transition-colors">0541 140 65 45</a></li>
+          <li>Değer İş Merkezi, Kat 6<br />İpekyolu / Van 65100</li>
+          <li class="pt-2 flex gap-2">
+            <a href="https://www.instagram.com/faradayetutmerkezi/" target="_blank" rel="noopener" aria-label="Instagram"
+               class="w-9 h-9 border border-paper/20 hover:border-gold hover:text-gold flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://wa.me/905411406545" target="_blank" rel="noopener" aria-label="WhatsApp"
+               class="w-9 h-9 border border-paper/20 hover:border-[#25D366] hover:text-[#25D366] flex items-center justify-center transition-colors">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.36 15.2L2.4 21.6l4.53-1.2a9.9 9.9 0 1 0 5.1-18.4Zm4.55 13.6c-.2.55-1.16 1.05-1.6 1.1-.44.04-.85.06-1.47-.15a11.6 11.6 0 0 1-4.68-3.13c-1.05-1.2-1.35-2.3-1.46-2.75-.1-.45.02-1.1.3-1.46.28-.36.6-.5.8-.5h.55c.18 0 .42-.06.64.5.24.58.8 2 .87 2.15.07.14.11.31.02.5-.35.7-.72.63-.55.93.65 1.12 1.44 1.87 2.2 2.35.3.19.56.17.7-.05.16-.24.55-.87.7-1.17.15-.3.3-.24.5-.17l1.9.9c.2.1.37.14.43.22.06.1.06.55-.13 1.1Z"/></svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 pt-6 border-t border-paper/10 flex flex-col md:flex-row items-center justify-between gap-3 text-[12px] text-paper/35">
+      <p>© <span id="year"></span> Faraday Etüt Merkezi — Tüm hakları saklıdır.</p>
+      <p>Van etüt merkezi · Van çalışma salonu · KPSS &amp; YKS hazırlık Van</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= MOBİL SABİT WHATSAPP BUTONU ================= -->
+<!-- Mobilde alt-sağda sabit; masaüstünde gizli (nav'da CTA var) -->
+<a href="https://wa.me/905411406545?text=Merhaba%2C%20Faraday%20Et%C3%BCt%20Merkezi%27ne%20kay%C4%B1t%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum."
+   target="_blank" rel="noopener" aria-label="WhatsApp'tan bilgi al"
+   class="sm:hidden fixed bottom-4 right-4 z-50 inline-flex items-center gap-2 bg-[#25D366] text-white text-[13px] font-semibold pl-4 pr-5 py-3 rounded-full shadow-lg shadow-black/20">
+  <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2a9.9 9.9 0 0 0-8.36 15.2L2.4 21.6l4.53-1.2a9.9 9.9 0 1 0 5.1-18.4Zm4.55 13.6c-.2.55-1.16 1.05-1.6 1.1-.44.04-.85.06-1.47-.15a11.6 11.6 0 0 1-4.68-3.13c-1.05-1.2-1.35-2.3-1.46-2.75-.1-.45.02-1.1.3-1.46.28-.36.6-.5.8-.5h.55c.18 0 .42-.06.64.5.24.58.8 2 .87 2.15.07.14.11.31.02.5-.35.7-.72.63-.55.93.65 1.12 1.44 1.87 2.2 2.35.3.19.56.17.7-.05.16-.24.55-.87.7-1.17.15-.3.3-.24.5-.17l1.9.9c.2.1.37.14.43.22.06.1.06.55-.13 1.1Z"/></svg>
+  Bilgi Al
+</a>
+
+<!-- ================= JS ================= -->
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Mobil menü
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // Scroll reveal (metin, başlık clip'i, görsel maskesi)
+  const revealables = document.querySelectorAll('.reveal, .heading-clip, .img-reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) {
+      e.target.classList.add('revealed');
+      // Stagger gecikmesi hover transition'larını etkilemesin diye açılışta temizlenir
+      setTimeout(() => { e.target.style.transitionDelay = ''; }, 1100);
+      io.unobserve(e.target);
+    } });
+  }, { threshold: 0.12 });
+  revealables.forEach(el => io.observe(el));
+
+  // Kademeli (stagger) açılış: data-stagger taşıyan grupların çocukları sırayla gelir
+  document.querySelectorAll('[data-stagger]').forEach(group => {
+    group.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i * 90) + 'ms';
+    });
+  });
+
+  // Sayaçlar
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = parseInt(el.dataset.count, 10);
+      const plus = el.dataset.plus || '';
+      const dur = 1500, start = performance.now();
+      const tick = (now) => {
+        const p = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(eased * target) + (p === 1 ? plus : '');
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.counter').forEach(el => co.observe(el));
+
+  // S.S.S.: tek akordeon açık kalır
+  const faqs = document.querySelectorAll('details.faq');
+  faqs.forEach(d => d.addEventListener('toggle', () => {
+    if (d.open) faqs.forEach(o => { if (o !== d) o.open = false; });
+  }));
+
+  // Sayfa ilerleme çizgisi + hero parallax (reduced-motion'da devre dışı)
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced) {
+    const bar = document.getElementById('progressBar');
+    const heroImg = document.querySelector('.hero-parallax');
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (max > 0 ? (y / max) * 100 : 0) + '%';
+        if (heroImg && y < window.innerHeight * 1.2) {
+          heroImg.style.transform = `translateY(${y * 0.22}px) scale(1.12)`;
+        }
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  } else {
+    document.querySelectorAll('.reveal, .heading-clip, .img-reveal').forEach(el => {
+      el.classList.add('revealed');
+      el.style.transitionDelay = '';
+    });
+    const bar = document.getElementById('progressBar');
+    if (bar) bar.remove();
+  }
+</script>
+</body>
+</html>
